@@ -17,7 +17,8 @@ public class CruddemoApplication {
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO){
 		return runner ->{
 		createStudent(studentDAO);
-		};
+		};//CommandLineRunner arayüzü, uygulama başlatıldığında çalıştırılacak olan bir run metodunu içerir.
+	
 	}
 
 	private void createStudent(StudentDAO studentDAO) {
