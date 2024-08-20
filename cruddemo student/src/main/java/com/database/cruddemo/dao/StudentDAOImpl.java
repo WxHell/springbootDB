@@ -6,7 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-@Repository
+@Repository //veri tabanı işlemleri için kullanılır
+
 public class StudentDAOImpl implements StudentDAO{
     private EntityManager entityManager;
 
