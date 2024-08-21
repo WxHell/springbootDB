@@ -16,9 +16,15 @@ public class CruddemoApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO){
 		return runner ->{
+<<<<<<< HEAD
 		//createMultipleStudent(studentDAO);
 		readStudent(studentDAO);
 		};
+=======
+		createStudent(studentDAO);
+		};//CommandLineRunner arayüzü, uygulama başlatıldığında çalıştırılacak olan bir run metodunu içerir.
+	
+>>>>>>> c2816bc4aaede8e0c0b963a9652694db53307c3c
 	}
 
 	private void readStudent(StudentDAO studentDAO) {

@@ -6,7 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-@Repository
+@Repository //veri tabanı işlemleri için kullanılır
+
 public class StudentDAOImpl implements StudentDAO{
     private EntityManager entityManager;
 
@@ -14,7 +15,7 @@ public class StudentDAOImpl implements StudentDAO{
     public StudentDAOImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
-    @Transactional
+    @Transactional //Bu notasyon, bu metodun bir veritabanı işlemi (transaction) içinde yürütülmesi gerektiğini belirtir.
     @Override
 
     public void save(Student theStudent) {
