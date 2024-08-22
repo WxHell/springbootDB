@@ -2,10 +2,13 @@ package com.database.cruddemo;
 
 import com.database.cruddemo.dao.StudentDAO;
 import com.database.cruddemo.entity.Student;
+import org.springframework.aop.target.LazyInitTargetSource;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+
+import java.util.List;
 
 @SpringBootApplication
 public class CruddemoApplication {
@@ -17,16 +20,60 @@ public class CruddemoApplication {
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO){
 		return runner ->{
 
-		//createMultipleStudent(studentDAO);
-		readStudent(studentDAO);
-	createStudent(studentDAO);
+			createMultipleStudent(studentDAO);
+			//readStudent(studentDAO);
+			//createStudent(studentDAO);
+			//queryForStudents(studentDAO);
+			//queryForStudentsByLastName(studentDAO);
+			//updateStudent(studentDAO);
+			//deleteStudent(studentDAO);
+			//deleteStudentAll(studentDAO);
 		};
 
 
-		};//CommandLineRunner arayüzü, uygulama başlatıldığında çalıştırılacak olan bir run metodunu içerir.
-	
+	}
+
+	private void deleteStudentAll(StudentDAO studentDAO) {
+		System.out.println("Deleting all student");
+		int numRowsDeleted = studentDAO.deleteAll();
+		System.out.println("Deleted row count: "+numRowsDeleted);
+	}
+
+	private void deleteStudent(StudentDAO studentDAO) {
+		int studentId=3;
+		System.out.println("Deleting student id: "+studentId);
+		studentDAO.delete(studentId);
+	}
+
+	private void updateStudent(StudentDAO studentDAO) {
+		int studentId=1;
+		System.out.println("Getting student with ıd: "+studentId);
+		Student myStudent = studentDAO.findByID(studentId);
+		myStudent.setFirstName("Scobby");
+		studentDAO.update(myStudent);
+		System.out.println("Updating student... ");
+		System.out.println("Updated student: "+myStudent);
+	}
+
+	private void queryForStudentsByLastName(StudentDAO studentDAO) {
+		List<Student> theStudents=studentDAO.findByLastName("Bosh");
+		for (Student tempStudents : theStudents){
+			System.out.println(theStudents);
+		}
+	}
+
+	private void queryForStudents(StudentDAO studentDAO) {
+		List<Student> theStudents = studentDAO.findAll();
+		for (Student tempStudent: theStudents){
+			System.out.println(tempStudent);
+		}
 
 	}
+
+	;//CommandLineRunner arayüzü, uygulama başlatıldığında çalıştırılacak olan bir run metodunu içerir.
+
+
+
 
 	private void readStudent(StudentDAO studentDAO) {
 		System.out.println("Creating new studen object... ");
